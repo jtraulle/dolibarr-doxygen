@@ -7,13 +7,16 @@ jobs:
   include:
     - stage: "Prepare"
       name: "Generate unified index file"
-      workspaces:
-        create:
-          name: build_index
-          paths:
-            - build_index/
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateUnifiedIndex.sh
+      deploy:
+        provider: pages
+        local_dir: build_index
+        skip_cleanup: true
+        github_token: $GITHUB_API_KEY
+        keep_history: false
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr develop (nigthly)"
       workspaces:
@@ -28,13 +31,16 @@ jobs:
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForDevelop.sh
+      deploy:
+        provider: pages
+        local_dir: build_develop
+        skip_cleanup: true
+        github_token: $GITHUB_API_KEY
+        keep_history: true
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (1/10)"
-      workspaces:
-        create:
-          name: build_versions00
-          paths:
-            - build_versions00/
       addons:
         apt:
           packages:
@@ -44,13 +50,16 @@ jobs:
         - VERSIONSFILE=versions00
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: pages
+        local_dir: build_versions00
+        skip_cleanup: true
+        github_token: $GITHUB_API_KEY
+        keep_history: true
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (2/10)"
-      workspaces:
-        create:
-          name: build_versions01
-          paths:
-            - build_versions01/
       addons:
         apt:
           packages:
@@ -62,11 +71,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (3/10)"
-      workspaces:
-        create:
-          name: build_versions02
-          paths:
-            - build_versions02/
       addons:
         apt:
           packages:
@@ -78,11 +82,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (4/10)"
-      workspaces:
-        create:
-          name: build_versions03
-          paths:
-            - build_versions03/
       addons:
         apt:
           packages:
@@ -94,11 +93,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (5/10)"
-      workspaces:
-        create:
-          name: build_versions04
-          paths:
-            - build_versions04/
       addons:
         apt:
           packages:
@@ -110,11 +104,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (6/10)"
-      workspaces:
-        create:
-          name: build_versions05
-          paths:
-            - build_versions05/
       addons:
         apt:
           packages:
@@ -126,11 +115,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (7/10)"
-      workspaces:
-        create:
-          name: build_versions06
-          paths:
-            - build_versions06/
       addons:
         apt:
           packages:
@@ -142,11 +126,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (8/10)"
-      workspaces:
-        create:
-          name: build_versions07
-          paths:
-            - build_versions07/
       addons:
         apt:
           packages:
@@ -158,11 +137,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (9/10)"
-      workspaces:
-        create:
-          name: build_versions08
-          paths:
-            - build_versions08/
       addons:
         apt:
           packages:
@@ -174,11 +148,6 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (10/10)"
-      workspaces:
-        create:
-          name: build_versions09
-          paths:
-            - build_versions09/
       addons:
         apt:
           packages:
@@ -188,25 +157,3 @@ jobs:
         - VERSIONSFILE=versions09
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
-    - stage: deploy
-      name: "Deploy generated Doxygen docs to GitHub pages"
-      workspaces:
-        use:
-          - build_index
-          - build_develop
-          - build_versions00
-          - build_versions01
-          - build_versions02
-          - build_versions03
-          - build_versions04
-          - build_versions05
-          - build_versions06
-          - build_versions07
-          - build_versions08
-          - build_versions09
-      script:
-        - mv -v -t $TRAVIS_BUILD_DIR/build/ $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build_develop/* $TRAVIS_BUILD_DIR/build_versions00/* $TRAVIS_BUILD_DIR/build_versions01/* $TRAVIS_BUILD_DIR/build_versions02/* $TRAVIS_BUILD_DIR/build_versions03/* $TRAVIS_BUILD_DIR/build_versions04/* $TRAVIS_BUILD_DIR/build_versions05/* $TRAVIS_BUILD_DIR/build_versions06/* $TRAVIS_BUILD_DIR/build_versions07/* $TRAVIS_BUILD_DIR/build_versions08/* $TRAVIS_BUILD_DIR/build_versions09/*
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script: ./deployToGitHubPages.sh

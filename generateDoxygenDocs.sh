@@ -19,21 +19,22 @@ cp template_index/tab_b.png build/
 cp template_index/dolibarr.png build/
 cat template_index/index-header.html > build/index.html
 
-echo "Generating Doxygen doc for develop"
+echo "Generating Doxygen doc for develop..."
 echo ""  
 cd dolibarr
-git checkout -f develop
+git checkout --quiet -f develop
 cd ${DIRPATH}
 ( cat dolibarr.doxyfile ; echo "PROJECT_NUMBER=develop" ; echo "HTML_OUTPUT=develop" ) | doxygen -
 
 while read version; do
-  echo "Generating Doxygen doc for Dolibarr version $version"
+  echo ""
+  echo "Generating Doxygen doc for Dolibarr version '$version'..."
   echo ""
   
   echo "<li><a href="$version/index.html">$version</a></li>" >> build/index.html
   
   cd dolibarr
-  git checkout -f $version
+  git checkout --quiet -f $version
   cd ${DIRPATH}
   ( cat dolibarr.doxyfile ; echo "PROJECT_NUMBER=$version" ; echo "HTML_OUTPUT=$version" ) | doxygen -
 done <dolibarrVersions.txt

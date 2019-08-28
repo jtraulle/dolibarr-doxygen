@@ -19,11 +19,6 @@ jobs:
           branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr develop (nigthly)"
-      workspaces:
-        create:
-          name: build_develop
-          paths:
-            - build_develop/
       addons:
         apt:
           packages:

@@ -3,6 +3,8 @@
 rm -rf versions/*
 rm -rf build/*
 
+git clone https://github.com/Dolibarr/dolibarr.git
+
 cd dolibarr && git tag --sort=-v:refname | head -10 > ../versions/dolibarrVersions
 cd versions && split -d -n l/10 dolibarrVersions versions
 cp template_index/doxygen.css build/

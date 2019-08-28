@@ -2,6 +2,11 @@
 
 DIRPATH="$(pwd)"
 
+cd dolibarr && git tag --sort=-v:refname | head -10 > ../versions/dolibarrVersions
+cd ..
+cd versions && split -d -n l/10 dolibarrVersions versions
+cd ..
+
 while read version; do
   echo "Generating Doxygen doc for Dolibarr version $version"
   echo ""

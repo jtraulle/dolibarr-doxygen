@@ -3,7 +3,6 @@ language: minimal
 cache:
   directories:
   - $TRAVIS_BUILD_DIR/build
-  - $TRAVIS_BUILD_DIR/versions
 
 addons:
   apt:
@@ -13,6 +12,9 @@ addons:
 
 before_script:
   - git clone https://github.com/Dolibarr/dolibarr.git
+
+matrix:
+  fast_finish: true
 
 jobs:
   include:

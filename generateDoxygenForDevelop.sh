@@ -8,4 +8,4 @@ echo ""
 cd dolibarr
 git checkout -f develop
 cd ${DIRPATH}
-( cat dolibarr.doxyfile ; echo "PROJECT_NUMBER=develop" ; echo "HTML_OUTPUT=develop" ) | doxygen -
+( cat dolibarr.doxyfile ; echo "PROJECT_NUMBER=develop" ; echo "OUTPUT_DIRECTORY=build_develop" ; echo "HTML_OUTPUT=develop" ) | doxygen -

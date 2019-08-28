@@ -2,9 +2,6 @@
 
 DIRPATH="$(pwd)"
 
-echo "Existing cache (ls build/)"
-ls build
-
 cd dolibarr && git tag --sort=-v:refname | head -10 > ../versions/dolibarrVersions
 cd ..
 cd versions && split -d -n l/10 dolibarrVersions versions

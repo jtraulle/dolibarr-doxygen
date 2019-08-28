@@ -1,12 +1,5 @@
 language: minimal
 
-cache:
-  directories:
-  - $TRAVIS_BUILD_DIR/build_index
-  - $TRAVIS_BUILD_DIR/build_develop
-  - $TRAVIS_BUILD_DIR/build_versions00
-  - $TRAVIS_BUILD_DIR/build_versions01
-
 matrix:
   fast_finish: true
 
@@ -14,10 +7,20 @@ jobs:
   include:
     - stage: "Prepare"
       name: "Generate unified index file"
+      workspaces:
+        create:
+          name: build_index
+          paths:
+            - build_index/
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateUnifiedIndex.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr develop (nigthly)"
+      workspaces:
+        create:
+          name: build_develop
+          paths:
+            - build_develop/
       addons:
         apt:
           packages:
@@ -27,6 +30,11 @@ jobs:
       script: ./generateDoxygenForDevelop.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (1/10)"
+      workspaces:
+        create:
+          name: build_versions00
+          paths:
+            - build_versions00/
       addons:
         apt:
           packages:
@@ -38,6 +46,11 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (2/10)"
+      workspaces:
+        create:
+          name: build_versions01
+          paths:
+            - build_versions01/
       addons:
         apt:
           packages:
@@ -49,6 +62,12 @@ jobs:
       script: ./generateDoxygenForVersions.sh
     - stage: deploy
       name: "Deploy generated Doxygen docs to GitHub pages"
+      workspaces:
+        use:
+          - build_index
+          - build_develop
+          - build_versions00
+          - build_versions01
       addons:
         apt:
           packages:

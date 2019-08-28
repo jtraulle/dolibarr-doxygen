@@ -6,6 +6,6 @@ cd build && \
 git init && \
 git config user.name "Deployment Bot" && \
 git config user.email "deploy@travis-ci.org" && \
-git add . && \
+git add --verbose . && \
 git commit -m "Deploy to GitHub Pages" && \
 git push --verbose --progress --force "${GIT_DEPLOY_REPO}" master:gh-pages

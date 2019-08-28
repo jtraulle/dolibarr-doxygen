@@ -209,6 +209,8 @@ jobs:
       deploy:
         provider: pages
         edge: true
+        strategy: api
+        keep_history: false
         skip_cleanup: true
         verbose: true
         local_dir: $TRAVIS_BUILD_DIR/build

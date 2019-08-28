@@ -7,6 +7,11 @@ cp template_index/tab_b.png build/
 cp template_index/dolibarr.png build/
 cat template_index/index-header.html > build/index.html
 
+echo "<li><a href="develop/index.html">develop</a></li>" >> build/index.html
+
 while read version; do
   echo "<li><a href="$version/index.html">$version</a></li>" >> build/index.html
 done <versions/dolibarrVersions
+
+cat template_index/index-footer.html >> build/index.html
+

@@ -1,13 +1,10 @@
 #!/bin/bash
 
-ls -alih
-
 rm -rf versions/*
 rm -rf build/*
 
-ls -alih
-
 cd dolibarr && git tag --sort=-v:refname | head -10 > ../versions/dolibarrVersions
+cd ..
 
 ls -alih
 

@@ -7,15 +7,6 @@ cache:
   - $TRAVIS_BUILD_DIR/build_versions00
   - $TRAVIS_BUILD_DIR/build_versions01
 
-addons:
-  apt:
-    packages:
-      - doxygen
-      - graphviz
-
-before_script:
-  - git clone https://github.com/Dolibarr/dolibarr.git
-
 matrix:
   fast_finish: true
 
@@ -23,22 +14,45 @@ jobs:
   include:
     - stage: "Prepare"
       name: "Generate unified index file"
+      before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateUnifiedIndex.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr develop (nigthly)"
+      addons:
+        apt:
+          packages:
+            - doxygen
+            - graphviz
+      before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForDevelop.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (1/10)"
+      addons:
+        apt:
+          packages:
+            - doxygen
+            - graphviz
       env:
         - VERSIONSFILE=versions00
+      before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (2/10)"
+      addons:
+        apt:
+          packages:
+            - doxygen
+            - graphviz
       env:
         - VERSIONSFILE=versions01
+      before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: deploy
       name: "Deploy generated Doxygen docs to GitHub pages"
+      addons:
+        apt:
+          packages:
+            - tree
       script:
         - tree
         - cp $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 GIT_DEPLOY_REPO=https://${GITHUB_API_KEY}@github.com/jtraulle/dolibarr-doxygen.git
 

@@ -1,0 +1,18 @@
+language: minimal
+
+addons:
+  apt:
+    packages:
+      - doxygen
+      - graphviz
+
+script:
+  - ./generateDoxygenDocs.sh
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: $TRAVIS_BUILD_DIR/build
+  github_token: $GITHUB_API_KEY
+  on:
+    branch: master

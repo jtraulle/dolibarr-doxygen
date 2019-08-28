@@ -73,12 +73,10 @@ jobs:
           packages:
             - tree
       script:
-        - tree
-        - cp $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build
-        - cp $TRAVIS_BUILD_DIR/build_develop/* $TRAVIS_BUILD_DIR/build
-        - cp $TRAVIS_BUILD_DIR/build_versions00/* $TRAVIS_BUILD_DIR/build
-        - cp $TRAVIS_BUILD_DIR/build_versions01/* $TRAVIS_BUILD_DIR/build
-        - tree
+        - cp -a $TRAVIS_BUILD_DIR/build_index/. $TRAVIS_BUILD_DIR/build/
+        - cp -a $TRAVIS_BUILD_DIR/build_develop/. $TRAVIS_BUILD_DIR/build/
+        - cp -a $TRAVIS_BUILD_DIR/build_versions00/. $TRAVIS_BUILD_DIR/build/
+        - cp -a $TRAVIS_BUILD_DIR/build_versions01/. $TRAVIS_BUILD_DIR/build/
       deploy:
         provider: pages
         skip_cleanup: true

@@ -9,6 +9,8 @@ git clone --single-branch --branch gh-pages ${GIT_DEPLOY_REPO} gh-pages
 
 mv build_${VERSIONSFILE}/* gh-pages/
 
+cd gh-pages
+
 git add .
 
 git commit -m "Deploy to GitHub Pages"

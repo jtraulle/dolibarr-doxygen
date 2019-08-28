@@ -12,4 +12,4 @@ mv build_${VERSIONSFILE}/* gh-pages/
 git add .
 
 git commit -m "Deploy to GitHub Pages"
-git push --verbose --progress --force "${GIT_DEPLOY_REPO}" master:gh-pages
+git push --verbose --progress --force "${GIT_DEPLOY_REPO}" gh-pages:gh-pages

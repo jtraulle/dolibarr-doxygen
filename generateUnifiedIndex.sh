@@ -1,5 +1,8 @@
 #!/bin/bash
 
+rm -rf versions/*
+rm -rf build/*
+
 cd dolibarr && git tag --sort=-v:refname | head -10 > ../versions/dolibarrVersions
 cd versions && split -d -n l/10 dolibarrVersions versions
 cp template_index/doxygen.css build/

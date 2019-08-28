@@ -34,46 +34,6 @@ jobs:
       env:
         - VERSIONSFILE=versions01
       script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (3/10)"
-      env:
-        - VERSIONSFILE=versions02
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (4/10)"
-      env:
-        - VERSIONSFILE=versions03
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (5/10)"
-      env:
-        - VERSIONSFILE=versions04
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (6/10)"
-      env:
-        - VERSIONSFILE=versions05
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (7/10)"
-      env:
-        - VERSIONSFILE=versions06
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (8/10)"
-      env:
-        - VERSIONSFILE=versions07
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (9/10)"
-      env:
-        - VERSIONSFILE=versions08
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (10/10)"
-      env:
-        - VERSIONSFILE=versions09
-      script: ./generateDoxygenForVersions.sh
     - stage: deploy
       name: "Deploy generated Doxygen docs to GitHub pages"
       deploy:

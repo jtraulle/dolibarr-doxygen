@@ -12,7 +12,7 @@ git config user.email "deploy@travis-ci.org"
 for D in `find . -mindepth 1 -type d`
 do
     echo "Adding '${D}' folder to git repository..."
-    git add ${D}
+    git add ${D}/*
 done
 
 git commit -m "Deploy to GitHub Pages"

@@ -6,9 +6,8 @@ rm -rf build/*
 cd dolibarr && git tag --sort=-v:refname | head -10 > ../versions/dolibarrVersions
 cd ..
 
-ls -alih
-
 cd versions && split -d -n l/10 dolibarrVersions versions
+cd ..
 cp template_index/doxygen.css build/
 cp template_index/tab_b.png build/
 cp template_index/dolibarr.png build/

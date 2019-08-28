@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DIRPATH="$(pwd)"
+
 echo "Generating Doxygen doc for develop"
 echo ""
 

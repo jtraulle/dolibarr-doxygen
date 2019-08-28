@@ -1,18 +1,84 @@
 language: minimal
 
+cache:
+  directories:
+  - $TRAVIS_BUILD_DIR/build
+  - $TRAVIS_BUILD_DIR/versions
+
 addons:
   apt:
     packages:
       - doxygen
       - graphviz
 
-script:
-  - ./generateDoxygenDocs.sh
+before_script:
+  - git clone https://github.com/Dolibarr/dolibarr.git
 
-deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: $TRAVIS_BUILD_DIR/build
-  github_token: $GITHUB_API_KEY
-  on:
-    branch: master
+jobs:
+  include:
+    - stage: "Prepare"
+      name: "Generate unified index file"
+      script: ./generateUnifiedIndex.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr develop (nigthly)"
+      script: ./generateDoxygenForDevelop.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (1/10)"
+      env:
+        - VERSIONSFILE=versions00
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (2/10)"
+      env:
+        - VERSIONSFILE=versions01
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (3/10)"
+      env:
+        - VERSIONSFILE=versions02
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (4/10)"
+      env:
+        - VERSIONSFILE=versions03
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (5/10)"
+      env:
+        - VERSIONSFILE=versions04
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (6/10)"
+      env:
+        - VERSIONSFILE=versions05
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (7/10)"
+      env:
+        - VERSIONSFILE=versions06
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (8/10)"
+      env:
+        - VERSIONSFILE=versions07
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (9/10)"
+      env:
+        - VERSIONSFILE=versions08
+      script: ./generateDoxygenForVersions.sh
+    - stage: "Build"
+      name: "Build doxygen docs for Dolibarr versions (10/10)"
+      env:
+        - VERSIONSFILE=versions09
+      script: ./generateDoxygenForVersions.sh
+    - stage: deploy
+      name: "Deploy generated Doxygen docs to GitHub pages"
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        local_dir: $TRAVIS_BUILD_DIR/build
+        github_token: $GITHUB_API_KEY
+        on:
+          branch: master
+

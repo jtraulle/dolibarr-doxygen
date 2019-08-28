@@ -29,14 +29,14 @@ jobs:
           packages:
             - doxygen
             - graphviz
+      env:
+        - VERSIONSFILE=develop
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForDevelop.sh
       deploy:
-        provider: pages
-        local_dir: build_develop
+        provider: script
         skip_cleanup: true
-        github_token: $GITHUB_API_KEY
-        keep_history: true
+        script: ./deployToGitHubPages.sh
         on:
           branch: master
     - stage: "Build"
@@ -51,11 +51,9 @@ jobs:
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
       deploy:
-        provider: pages
-        local_dir: build_versions00
+        provider: script
         skip_cleanup: true
-        github_token: $GITHUB_API_KEY
-        keep_history: true
+        script: ./deployToGitHubPages.sh
         on:
           branch: master
     - stage: "Build"

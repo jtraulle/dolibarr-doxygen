@@ -14,4 +14,4 @@ git config user.email "deploy@travis-ci.org"
 git add .
 
 git commit -m "Deploy to GitHub Pages"
-git push --verbose --progress --force "${GIT_DEPLOY_REPO}" gh-pages:gh-pages
+git push --force "${GIT_DEPLOY_REPO}" gh-pages:gh-pages

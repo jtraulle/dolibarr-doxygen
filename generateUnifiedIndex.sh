@@ -1,11 +1,16 @@
 #!/bin/bash
 
+ls -alih
+
 rm -rf versions/*
 rm -rf build/*
 
-git clone https://github.com/Dolibarr/dolibarr.git
+ls -alih
 
 cd dolibarr && git tag --sort=-v:refname | head -10 > ../versions/dolibarrVersions
+
+ls -alih
+
 cd versions && split -d -n l/10 dolibarrVersions versions
 cp template_index/doxygen.css build/
 cp template_index/tab_b.png build/

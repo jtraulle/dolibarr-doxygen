@@ -11,6 +11,9 @@ addons:
       - doxygen
       - graphviz
 
+before_script:
+  - git clone https://github.com/Dolibarr/dolibarr.git
+
 jobs:
   include:
     - stage: "Prepare"

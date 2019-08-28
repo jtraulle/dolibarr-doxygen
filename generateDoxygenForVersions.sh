@@ -2,8 +2,6 @@
 
 DIRPATH="$(pwd)"
 
-git clone https://github.com/Dolibarr/dolibarr.git
-
 while read version; do
   echo "Generating Doxygen doc for Dolibarr version $version"
   echo ""

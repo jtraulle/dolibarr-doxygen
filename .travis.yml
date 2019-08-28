@@ -207,14 +207,6 @@ jobs:
       script:
         - mv -v -t $TRAVIS_BUILD_DIR/build/ $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build_develop/* $TRAVIS_BUILD_DIR/build_versions00/* $TRAVIS_BUILD_DIR/build_versions01/* $TRAVIS_BUILD_DIR/build_versions02/* $TRAVIS_BUILD_DIR/build_versions03/* $TRAVIS_BUILD_DIR/build_versions04/* $TRAVIS_BUILD_DIR/build_versions05/* $TRAVIS_BUILD_DIR/build_versions06/* $TRAVIS_BUILD_DIR/build_versions07/* $TRAVIS_BUILD_DIR/build_versions08/* $TRAVIS_BUILD_DIR/build_versions09/*
       deploy:
-        provider: pages
-        edge: true
-        strategy: api
-        keep_history: false
+        provider: script
         skip_cleanup: true
-        verbose: true
-        local_dir: $TRAVIS_BUILD_DIR/build
-        github_token: $GITHUB_API_KEY
-        on:
-          branch: master
-
+        script: ./deployToGitHubPages.sh

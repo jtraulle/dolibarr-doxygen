@@ -14,7 +14,7 @@ while read version; do
   echo ""
 
   cd dolibarr
-  git checkout -f $version
+  git checkout --quiet -f $version
   cd ${DIRPATH}
   ( cat dolibarr.doxyfile ; echo "PROJECT_NUMBER=$version" ; echo "OUTPUT_DIRECTORY=build_$VERSIONSFILE" ; echo "HTML_OUTPUT=$version" ) | doxygen -
 done <versions/$VERSIONSFILE

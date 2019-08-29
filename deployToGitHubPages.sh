@@ -10,6 +10,8 @@ bell &
 
 GIT_DEPLOY_REPO=https://${GITHUB_API_KEY}@github.com/jtraulle/dolibarr-doxygen.git
 
+git config --global gc.auto 0
+
 mkdir gh-pages
 
 mv build/* gh-pages/

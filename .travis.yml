@@ -6,7 +6,7 @@ matrix:
 jobs:
   include:
     - stage: "Prepare"
-      name: "Generate unified index file"
+      name: "Generate unified index file and split all git tags into 10 equals versions files"
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateUnifiedIndex.sh
       deploy:
@@ -62,6 +62,12 @@ jobs:
         - VERSIONSFILE=versions01
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (3/10)"
       addons:
@@ -73,6 +79,12 @@ jobs:
         - VERSIONSFILE=versions02
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (4/10)"
       addons:
@@ -84,6 +96,12 @@ jobs:
         - VERSIONSFILE=versions03
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (5/10)"
       addons:
@@ -95,6 +113,12 @@ jobs:
         - VERSIONSFILE=versions04
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (6/10)"
       addons:
@@ -106,6 +130,12 @@ jobs:
         - VERSIONSFILE=versions05
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (7/10)"
       addons:
@@ -117,6 +147,12 @@ jobs:
         - VERSIONSFILE=versions06
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (8/10)"
       addons:
@@ -128,6 +164,12 @@ jobs:
         - VERSIONSFILE=versions07
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (9/10)"
       addons:
@@ -139,6 +181,12 @@ jobs:
         - VERSIONSFILE=versions08
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (10/10)"
       addons:
@@ -150,3 +198,9 @@ jobs:
         - VERSIONSFILE=versions09
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToGitHubPages.sh
+        on:
+          branch: master

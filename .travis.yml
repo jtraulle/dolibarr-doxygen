@@ -212,10 +212,9 @@ jobs:
         script: ./deployToGitHubPages.sh
     - stage: deploy
       name: "Deploy generated Doxygen docs to Surge.sh"
-      addons:
-        apt:
-          packages:
-            - npm
+      language: node_js
+      node_js:
+        - "11"
       workspaces:
         use:
           - build_index

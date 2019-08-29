@@ -11,7 +11,7 @@ cd gh-pages
 git config user.name "Deployment Bot"
 git config user.email "deploy@travis-ci.org"
 
-git add .
+git add . > /dev/null
 
 git commit -m "Deploy to GitHub Pages"
 git push --force "${GIT_DEPLOY_REPO}" gh-pages:gh-pages

@@ -2,7 +2,7 @@
 
 function bell() {
   while true; do
-    echo -e "\a"
+    echo -e "."
     sleep 60
   done
 }

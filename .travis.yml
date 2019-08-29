@@ -6,7 +6,7 @@ matrix:
 jobs:
   include:
     - stage: "Prepare"
-      name: "Generate unified index file and split all git tags into 10 equals versions files"
+      name: "Generate unified index file"
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateUnifiedIndex.sh
       deploy:

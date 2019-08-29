@@ -6,8 +6,6 @@ mkdir build_index
 cd dolibarr && git tag --sort=-v:refname > ../versions/dolibarrVersions
 cd ..
 
-cd versions && split -d -n l/10 dolibarrVersions versions
-cd ..
 cp template_index/doxygen.css build_index/
 cp template_index/tab_b.png build_index/
 cp template_index/dolibarr.png build_index/

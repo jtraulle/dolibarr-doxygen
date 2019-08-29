@@ -10,10 +10,8 @@ bell &
 
 GIT_DEPLOY_REPO=https://${GITHUB_API_KEY}@github.com/jtraulle/dolibarr-doxygen.git
 
-echo -e "\nDisabling Git automatic garbage collecting and compression to save some time..."
+echo -e "\nDisabling Git automatic garbage collecting to save some time..."
 git config --global gc.auto 0
-git config --global core.compression 0
-git config --global core.preloadindex true
 
 echo -e "\nDefining Git user name and user email..."
 git config --global user.name "Deployment Bot"

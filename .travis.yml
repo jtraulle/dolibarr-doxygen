@@ -236,4 +236,4 @@ jobs:
       deploy:
         provider: script
         skip_cleanup: true
-        script: surge --project ./build --domain dolibarr-doxygen.surge.sh
+        script: ./deployToSurge.sh

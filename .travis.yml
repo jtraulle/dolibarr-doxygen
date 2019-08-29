@@ -210,3 +210,31 @@ jobs:
         provider: script
         skip_cleanup: true
         script: ./deployToGitHubPages.sh
+    - stage: deploy
+      name: "Deploy generated Doxygen docs to Surge.sh"
+      addons:
+        apt:
+          packages:
+            - npm
+      workspaces:
+        use:
+          - build_index
+          - build_develop
+          - build_versions00
+          - build_versions01
+          - build_versions02
+          - build_versions03
+          - build_versions04
+          - build_versions05
+          - build_versions06
+          - build_versions07
+          - build_versions08
+          - build_versions09
+      before_script:
+        - npm install -g surge
+      script:
+        - mv -v -t $TRAVIS_BUILD_DIR/build/ $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build_develop/* $TRAVIS_BUILD_DIR/build_versions00/* $TRAVIS_BUILD_DIR/build_versions01/* $TRAVIS_BUILD_DIR/build_versions02/* $TRAVIS_BUILD_DIR/build_versions03/* $TRAVIS_BUILD_DIR/build_versions04/* $TRAVIS_BUILD_DIR/build_versions05/* $TRAVIS_BUILD_DIR/build_versions06/* $TRAVIS_BUILD_DIR/build_versions07/* $TRAVIS_BUILD_DIR/build_versions08/* $TRAVIS_BUILD_DIR/build_versions09/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: ./deployToSurge.sh

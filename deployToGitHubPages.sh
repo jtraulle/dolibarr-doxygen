@@ -13,5 +13,5 @@ git config user.email "deploy@travis-ci.org"
 
 git add . > /dev/null
 
-git commit --quiet -m "Deploy to GitHub Pages"
+git commit --quiet -m " Deploy jtraulle/dolibarr-doxygen to github.com/jtraulle/dolibarr-doxygen.git:gh-pages"
 git push --force "${GIT_DEPLOY_REPO}" gh-pages:gh-pages

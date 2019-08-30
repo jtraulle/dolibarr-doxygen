@@ -30,6 +30,8 @@ jobs:
         apt:
           packages:
             - libclang1-8
+            - libtinfo-dev
+            - libxapian30
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh

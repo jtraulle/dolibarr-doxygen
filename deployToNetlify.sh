@@ -8,7 +8,7 @@ function bell() {
 }
 bell &
 
-echo -e "\nPushing to surge..."
-surge --project ./build --domain dolibarr-doxygen.surge.sh
+echo -e "\nPushing to Netlify..."
+netlify deploy --dir=build
 
 exit $?

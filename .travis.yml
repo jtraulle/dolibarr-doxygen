@@ -15,177 +15,19 @@ jobs:
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateUnifiedIndex.sh
     - stage: "Build"
-      name: "Build doxygen docs for Dolibarr develop (nigthly)"
+      name: "Build doxygen docs for Dolibarr versions"
       workspaces:
         create:
-          name: build_develop
+          name: build_versions
           paths:
-            - build_develop/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForDevelop.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (1/10)"
-      workspaces:
-        create:
-          name: build_versions00
-          paths:
-            - build_versions00/
+            - build_versions
       addons:
         apt:
           packages:
             - doxygen
             - graphviz
       env:
-        - VERSIONSFILE=versions00
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (2/10)"
-      workspaces:
-        create:
-          name: build_versions01
-          paths:
-            - build_versions01/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions01
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (3/10)"
-      workspaces:
-        create:
-          name: build_versions02
-          paths:
-            - build_versions02/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions02
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (4/10)"
-      workspaces:
-        create:
-          name: build_versions03
-          paths:
-            - build_versions03/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions03
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (5/10)"
-      workspaces:
-        create:
-          name: build_versions04
-          paths:
-            - build_versions04/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions04
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (6/10)"
-      workspaces:
-        create:
-          name: build_versions05
-          paths:
-            - build_versions05/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions05
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (7/10)"
-      workspaces:
-        create:
-          name: build_versions06
-          paths:
-            - build_versions06/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions06
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (8/10)"
-      workspaces:
-        create:
-          name: build_versions07
-          paths:
-            - build_versions07/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions07
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (9/10)"
-      workspaces:
-        create:
-          name: build_versions08
-          paths:
-            - build_versions08/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions08
-      before_script: git clone https://github.com/Dolibarr/dolibarr.git
-      script: ./generateDoxygenForVersions.sh
-    - stage: "Build"
-      name: "Build doxygen docs for Dolibarr versions (10/10)"
-      workspaces:
-        create:
-          name: build_versions09
-          paths:
-            - build_versions09/
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
-      env:
-        - VERSIONSFILE=versions09
+        - VERSIONSFILE=versions
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: deploy
@@ -193,17 +35,7 @@ jobs:
       workspaces:
         use:
           - build_index
-          - build_develop
-          - build_versions00
-          - build_versions01
-          - build_versions02
-          - build_versions03
-          - build_versions04
-          - build_versions05
-          - build_versions06
-          - build_versions07
-          - build_versions08
-          - build_versions09
+          - build_versions
       script:
         - mv -v -t $TRAVIS_BUILD_DIR/build/ $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build_develop/* $TRAVIS_BUILD_DIR/build_versions00/* $TRAVIS_BUILD_DIR/build_versions01/* $TRAVIS_BUILD_DIR/build_versions02/* $TRAVIS_BUILD_DIR/build_versions03/* $TRAVIS_BUILD_DIR/build_versions04/* $TRAVIS_BUILD_DIR/build_versions05/* $TRAVIS_BUILD_DIR/build_versions06/* $TRAVIS_BUILD_DIR/build_versions07/* $TRAVIS_BUILD_DIR/build_versions08/* $TRAVIS_BUILD_DIR/build_versions09/*
       deploy:
@@ -218,17 +50,7 @@ jobs:
       workspaces:
         use:
           - build_index
-          - build_develop
-          - build_versions00
-          - build_versions01
-          - build_versions02
-          - build_versions03
-          - build_versions04
-          - build_versions05
-          - build_versions06
-          - build_versions07
-          - build_versions08
-          - build_versions09
+          - build_versions
       before_script:
         - npm install -g netlify-cli
       script:

@@ -29,7 +29,7 @@ jobs:
       addons:
         apt:
           packages:
-            - libclang1-8
+            - libclang1-7
             - libtinfo-dev
             - libxapian30
             - graphviz

@@ -26,8 +26,6 @@ jobs:
           packages:
             - doxygen
             - graphviz
-      env:
-        - VERSIONSFILE=versions
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: deploy

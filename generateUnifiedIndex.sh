@@ -1,10 +1,6 @@
 #!/bin/bash
 
-
 mkdir build_index
-
-cd dolibarr && git tag --sort=-v:refname > ../versions/dolibarrVersions
-cd ..
 
 cp template_index/doxygen.css build_index/
 cp template_index/tab_b.png build_index/

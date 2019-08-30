@@ -40,20 +40,4 @@ jobs:
         provider: script
         skip_cleanup: true
         script: ./deployToGitHubPages.sh
-    - stage: deploy
-      name: "Deploy generated Doxygen docs to Netlify"
-      language: node_js
-      node_js:
-        - "11"
-      workspaces:
-        use:
-          - build_index
-          - build_versions
-      before_script:
-        - npm install -g netlify-cli
-      script:
-        - mv -v -t $TRAVIS_BUILD_DIR/build/ $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build_versions/*
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script: ./deployToNetlify.sh
+

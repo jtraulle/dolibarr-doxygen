@@ -107,7 +107,7 @@ jobs:
           - build_versions04
           - build_versions05
       script:
-        - mv -v -t $TRAVIS_BUILD_DIR/build/ $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build_versions/*
+        - mv -v -t $TRAVIS_BUILD_DIR/build/ $TRAVIS_BUILD_DIR/build_index/* $TRAVIS_BUILD_DIR/build_versions01/* $TRAVIS_BUILD_DIR/build_versions02/* $TRAVIS_BUILD_DIR/build_versions03/* $TRAVIS_BUILD_DIR/build_versions04/* $TRAVIS_BUILD_DIR/build_versions05/*
       deploy:
         provider: script
         skip_cleanup: true

@@ -3,6 +3,10 @@
 DIRPATH="$(pwd)"
 
 while read version; do
+  echo "Requiring hschletz/doxygen-phpdoc composer dependency..."
+  echo ""
+  composer require --prefer-dist hschletz/doxygen-phpdoc
+
   echo "Generating Doxygen doc for Dolibarr version $version"
   echo ""
 

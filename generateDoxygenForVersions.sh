@@ -2,7 +2,7 @@
 
 DIRPATH="$(pwd)"
 
-cd versions && split -d 1 -n l/5 dolibarrVersions versions
+cd versions && split --numeric-suffixes=1 -n l/5 dolibarrVersions versions
 cd ..
 
 echo "Using version file versions/$VERSIONSFILE"

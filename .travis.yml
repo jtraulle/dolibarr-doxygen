@@ -17,6 +17,7 @@ jobs:
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateUnifiedIndex.sh
     - stage: "Build"
+      language: php
       name: "Build doxygen docs for Dolibarr versions"
       workspaces:
         create:

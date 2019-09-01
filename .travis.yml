@@ -29,6 +29,7 @@ jobs:
         apt:
           packages:
             - doxygen
+            - doxygen-latex
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
@@ -45,6 +46,7 @@ jobs:
         apt:
           packages:
             - doxygen
+            - doxygen-latex
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
@@ -61,6 +63,7 @@ jobs:
         apt:
           packages:
             - doxygen
+            - doxygen-latex
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
@@ -77,6 +80,7 @@ jobs:
         apt:
           packages:
             - doxygen
+            - doxygen-latex
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
@@ -93,6 +97,7 @@ jobs:
         apt:
           packages:
             - doxygen
+            - doxygen-latex
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh

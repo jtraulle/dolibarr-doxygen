@@ -18,6 +18,8 @@ jobs:
       script: ./generateUnifiedIndex.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (1/5)"
+      services:
+        - docker
       env:
         - VERSIONSFILE=versions01
       workspaces:
@@ -29,14 +31,13 @@ jobs:
         apt:
           packages:
             - doxygen
-            - doxygen-latex
-            - texlive-lang-greek
-            - texlive-luatex
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (2/5)"
+      services:
+        - docker
       env:
         - VERSIONSFILE=versions02
       workspaces:
@@ -48,14 +49,13 @@ jobs:
         apt:
           packages:
             - doxygen
-            - doxygen-latex
-            - texlive-lang-greek
-            - texlive-luatex
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (3/5)"
+      services:
+        - docker
       env:
         - VERSIONSFILE=versions03
       workspaces:
@@ -67,14 +67,13 @@ jobs:
         apt:
           packages:
             - doxygen
-            - doxygen-latex
-            - texlive-luatex
-            - texlive-lang-greek
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (4/5)"
+      services:
+        - docker
       env:
         - VERSIONSFILE=versions04
       workspaces:
@@ -86,14 +85,13 @@ jobs:
         apt:
           packages:
             - doxygen
-            - doxygen-latex
-            - texlive-luatex
-            - texlive-lang-greek
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh
     - stage: "Build"
       name: "Build doxygen docs for Dolibarr versions (5/5)"
+      services:
+        - docker
       env:
         - VERSIONSFILE=versions05
       workspaces:
@@ -105,9 +103,6 @@ jobs:
         apt:
           packages:
             - doxygen
-            - doxygen-latex
-            - texlive-luatex
-            - texlive-lang-greek
             - graphviz
       before_script: git clone https://github.com/Dolibarr/dolibarr.git
       script: ./generateDoxygenForVersions.sh

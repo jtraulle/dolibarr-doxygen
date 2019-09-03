@@ -176,6 +176,10 @@ dl.el {
 
 ul {
   overflow: hidden; /*Fixed: list item bullets overlap floating elements*/
+  list-style-type: none;
+  padding-left: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 #side-nav ul {

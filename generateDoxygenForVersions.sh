@@ -26,6 +26,7 @@ while IFS= read -r version; do
   echo "Generating Doxygen HTML doc for Dolibarr version $version"
   echo ""
   docker run --user ${UID} --rm -v `pwd`:/home jtraulle/doxygen:1.8.16 /bin/sh -c "( cat dolibarr.doxyfile ; echo 'PROJECT_NUMBER=$version' ; echo 'OUTPUT_DIRECTORY=build_$VERSIONSFILE' ; echo 'HTML_OUTPUT=$version' ) | doxygen -"
+  cp doxygen_warnings.log build_$VERSIONSFILE/$version/doxygen-warnings.log 2>/dev/null || :
 
   echo "Generating Doxygen LaTeX doc for Dolibarr version $version"
   echo ""
@@ -38,5 +39,6 @@ while IFS= read -r version; do
   docker run --rm -v `pwd`:/home jtraulle/doxygen:1.8.16 /bin/sh -c "cd build_$VERSIONSFILE/pdf_$version/ && make && chmod a+rw refman*"
   cd ${DIRPATH}
   cp build_$VERSIONSFILE/pdf_$version/refman.pdf build_$VERSIONSFILE/$version/dolibarr-$version.pdf
+  cp build_$VERSIONSFILE/pdf_$version/refman.log build_$VERSIONSFILE/$version/lualatex-warnings.log
   rm -rf build_$VERSIONSFILE/pdf_$version
 done <"versions/$VERSIONSFILE"
